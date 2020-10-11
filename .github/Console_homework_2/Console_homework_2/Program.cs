@@ -4,7 +4,6 @@ namespace Console_homework_2
 {
     class Program
     {
-
         static double segment1(double x, double r) //расчёт первого сегмента графика
         {
             double k = 1; //tan(45) = 1
@@ -44,6 +43,8 @@ namespace Console_homework_2
 
         static void Main(string[] args)
         {
+            Console.Clear();
+
             string Title = "Программа вычисляет значение функции, заданной в виде графика.";
             int centerX = (Console.WindowWidth / 2) - (Title.Length / 2); //выравниваем заголовок по центру
             Console.SetCursorPosition(centerX, 0);
@@ -54,7 +55,7 @@ namespace Console_homework_2
             r = double.Parse(Console.ReadLine());
 
 
-            for (double x = -5; x <= 9; x += 0.2) //шаг 0.2
+            for (double x = -5; x <= (9 +0.2); x += 0.2) //шаг 0.2
             {
 
                 if (r >= 0) //проверка корректности ввода
@@ -105,12 +106,13 @@ namespace Console_homework_2
                      Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment3(x, r));
                     }
 
-                    if ((6 <= x) && (x <= 9))
+                    if ((6 <= x) && (x <= 9.2))
                     {
                         Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment4(x, r));
                     }
                 }
             }
+
            if (r < 0)
            {
              Console.WriteLine("Некорректный ввод параметра R (R >= 0).");
