@@ -16,7 +16,7 @@ namespace Console_homework_2
 
         static double segment2(double x, double r) //расчёт второго сегмента графика
         {
-            double a = 0; //центр окружности в 
+            double a = 0; //центр окружности
             double b = 0;
             double y;
             y = Math.Sqrt(r * r - (x - a) * (x - a)) - b;
@@ -50,34 +50,73 @@ namespace Console_homework_2
             Console.WriteLine(Title);
 
             Console.WriteLine("Введите параметр R.");
-            int r;
-            r = int.Parse(Console.ReadLine());
+            double r;
+            r = double.Parse(Console.ReadLine());
 
-            for (double x = -5; x <= 9; x += 0.3) //шаг 0.2
+
+            for (double x = -5; x <= 9; x += 0.2) //шаг 0.2
             {
-                if (x < -5)
+
+                if (r >= 0) //проверка корректности ввода
                 {
-                    Console.WriteLine("Функция не определена.");
-                }
-                else if (x < -3)
-                {
-                    Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment1(x, r));
-                }
-                else if (x < 0)
-                {
-                    Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment2(x, r));
-                }
-                else if (x < 6)
-                {
-                    Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment3(x, r));
-                }
-                else if (x < 9)
-                {
-                    Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment4(x, r));
+                    if (x < -5)
+                    {
+                        Console.WriteLine("Функция не определена.");
+                    }
+
+                    if ((-5 <= x) && (x < (-3 + 0.2)))
+                    {
+                        Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment1(x, r));
+                    }
+
+                    if ((-3 < x) && (x < (0 + 0.2)))
+                    {
+
+                        if (r < 3)
+                        {
+
+                            if (x < -r)
+                            {
+                                Console.WriteLine("y({0:0.00}) - функция не определена в этой точке", x);
+                            }
+
+                            else
+                            {
+                                 if (r == 0)
+                                 {
+                                     Console.WriteLine("y({0:0.00}) = {1:0.00}", 0, 0);
+                                 }
+                                else
+                                { 
+                                Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment2(x, r));
+                                }
+                              
+                            }
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment2(x, r));
+                        }
+                    }
+
+                    if ((0 <= x) && (x <= 6))
+                    {        
+                     Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment3(x, r));
+                    }
+
+                    if ((6 <= x) && (x <= 9))
+                    {
+                        Console.WriteLine("y({0:0.00}) = {1:0.00}", x, segment4(x, r));
+                    }
                 }
             }
-
-            Console.ReadKey();
+           if (r < 0)
+           {
+             Console.WriteLine("Некорректный ввод параметра R (R >= 0).");
+           }
+             
+        Console.ReadKey();
         }
     }
 }
